@@ -6,25 +6,23 @@ public static class Game
     
     public static void Play()
     {
+        Initialize();
+        
         while (isPlaying)
         {
             Command command = CommandProcessor.GetCommand();
             if (command.isValid)
             {
-                if (command.Verb == "tron")
-                {
-                    Debugger.Tron();
-                }
-                else if (command.Verb == "troff")
-                {
-                    Debugger.Troff();
-                }
-                Console.WriteLine(command.ToString());
-            }
-            else
-            {
-                Console.WriteLine("Invalid Command");
+                Debugger.Write(command.ToString());
+                CommandHandler.Handle(command);
             }
         }
+    }
+
+    private static void Initialize()
+    {
+        Debugger.Tron();
+        Map.Initialize();
+        Player.Initialize();
     }
 }

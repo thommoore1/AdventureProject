@@ -2,6 +2,7 @@ namespace AdventureF24;
 
 public static class Map
 {
+    public static Location StartLocation;
     public static void Initialize()
     {
         Location entranceHall = new Location("Entrance Hall", "A grand hall. Doors lead north and east.");
@@ -53,5 +54,12 @@ public static class Map
         
         lavaFlats.AddConnection("east", mountain);
         lavaFlats.AddConnection("south", meadow);
+
+        StartLocation = meadow;
+        
+        Item key = new Item("Key", "A key", "there is a key here");
+        Item beer = new Item("beer", "Beer's beer", "there is beer here");
+        meadow.AddItem(key);
+        meadow.AddItem(beer);
     }
 }

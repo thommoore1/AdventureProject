@@ -3,7 +3,7 @@ namespace AdventureF24;
 public static class Vocabulary
 {
     public static List<string> notStandaloneVerbs = new List<string>()
-        { "look", "eat", "get", "go" };
+        { "look", "eat", "get", "go", "take" };
     
     public static List<string> standaloneVerbs = new List<string>()
         { "look", "inventory", "exit", "tron", "troff"};
@@ -24,5 +24,13 @@ public static class Vocabulary
     public static bool IsStandaloneVerb(string word)
     {
         return standaloneVerbs.Contains(word);
+    }
+
+    public static void AddNoun(string noun)
+    {
+        if (!nouns.Contains(noun))
+        {
+            nouns.Add(noun);
+        }
     }
 }
