@@ -41,9 +41,9 @@ public class Location
         string fullDescription = $"{Name}\n{Description}";
         foreach (Item item in Items)
         {
-            fullDescription += $"\n{item.LocationDescription}";
+            fullDescription += $"\n{item.GetLocationDescription()}";
         }
-        return Description;
+        return fullDescription;
     }
 
     public Item FindItem(string itemName)

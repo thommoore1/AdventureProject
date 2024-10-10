@@ -3,13 +3,13 @@ namespace AdventureF24;
 public static class Vocabulary
 {
     public static List<string> notStandaloneVerbs = new List<string>()
-        { "look", "eat", "get", "go", "take" };
+        { "look", "eat", "get", "go", "take", "drop"};
     
     public static List<string> standaloneVerbs = new List<string>()
         { "look", "inventory", "exit", "tron", "troff"};
     
     public static List<string> nouns = new List<string>()
-        { "north", "south", "west", "east", "up", "down" };
+        { "north", "south", "west", "east", "up", "down"};
 
     public static bool IsNoun(string noun)
     {

@@ -3,7 +3,7 @@ namespace AdventureF24;
 public static class Player
 {
     private static Location currentLocation;
-    public static List<Item> Inventory;
+    public static List<Item> Inventory = new List<Item>();
 
     public static void Initialize()
     {
@@ -40,11 +40,27 @@ public static class Player
         }
         else
         {
+            item.PickUp();
             Inventory.Add(item);
             currentLocation.RemoveItem(item);
             IO.Write($"You take the {item.Name}.");
         }
     }
-    
-    
+
+    public static string GetLocationDescription()
+    {
+        return currentLocation.GetDescription();
+    }
+
+    public static void Drop(Command command)
+    {
+        Item? item = Inventory.FirstOrDefault(i => i.Name.ToLower() == command.Noun.ToLower());
+
+        if (item != null)
+        {
+            Inventory.Remove(item);
+            //currentLocation.DropItem(item);
+            IO.Write($"You drop the {item.Name}.");
+        }
+    }
 }

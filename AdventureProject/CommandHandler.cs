@@ -7,9 +7,21 @@ public static class CommandHandler
         {"go", Move},
         {"tron", Tron},
         {"troff", Troff},
-        {"take", Take}
+        {"take", Take},
+        {"look", Look},
+        {"drop", Drop},
     };
-    
+
+    private static void Drop(Command command)
+    {
+        Player.Drop(command);
+    }
+
+    private static void Look(Command command)
+    {
+        IO.Write(Player.GetLocationDescription());
+    }
+
     public static void Handle(Command command)
     {
         if (commandMap.ContainsKey(command.Verb))

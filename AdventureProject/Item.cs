@@ -5,19 +5,37 @@ public class Item
     public string Name;
     //function
     public string Description;
-    public string LocationDescription;
+    public string InitialLocationDescription;
     public int UseCount;
     //expiration
     public bool IsTakeable;
     public bool IsEdible;
+    public bool HasBeenPickedUp = false;
     
 
-    public Item(string name, string description, string locationDescription, bool isTakeable = true)
+    public Item(string name, string description, string initialLocationDescription, bool isTakeable = true)
     {
         Vocabulary.AddNoun(name);
         Name = name;
         Description = description;
-        LocationDescription = locationDescription;
+        InitialLocationDescription = initialLocationDescription;
         IsTakeable = isTakeable;
+    }
+
+    public string GetLocationDescription()
+    {
+        if (HasBeenPickedUp)
+        {
+            return Description;
+        }
+        else
+        {
+            return InitialLocationDescription;
+        }
+    }
+
+    public void PickUp()
+    {
+        HasBeenPickedUp = true;
     }
 }
