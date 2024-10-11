@@ -1,5 +1,4 @@
 namespace AdventureF24;
-
 public static class Player
 {
     private static Location currentLocation;
@@ -59,8 +58,25 @@ public static class Player
         if (item != null)
         {
             Inventory.Remove(item);
-            //currentLocation.DropItem(item);
+            currentLocation.AddItem(item);//add drop item method?
             IO.Write($"You drop the {item.Name}.");
+        }
+    }
+
+    public static void ShowInventory()
+    {
+        if (Inventory.Count == 0)
+        {
+            IO.Write("You are empty-handed.");
+        }
+        else
+        {
+            IO.Write("You are carrying ");
+            foreach (Item item in Inventory)
+            {
+                var article = SemanticTools.CreateArticle(item.Name);
+                IO.Write(" " + article + " " + item.Name);
+            }
         }
     }
 }

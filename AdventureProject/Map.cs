@@ -57,9 +57,11 @@ public static class Map
 
         StartLocation = meadow;
         
-        Item key = new Item("Key", "A key", "there is a key poking out from the ground");
+        Item key = new Item("key", "A key", "there is a key poking out from the ground");
         Item beer = new Item("beer", "Beer's beer", "there is beer on a tree stump");
+        Item alligator = new Item("alligator", "Alligator's alligator", "there is alligator's alligator");
         meadow.AddItem(key);
         meadow.AddItem(beer);
+        meadow.AddItem(alligator);
     }
 }
