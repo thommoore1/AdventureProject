@@ -11,7 +11,6 @@ public class SemanticTools
         {
             article = "an";
         }
-
         return article;
     }
 }
