@@ -1,8 +1,8 @@
 namespace AdventureF24;
 
-public static class CommandHandler
+public class ExplorationCommandHandler
 {
-    private static Dictionary<string, Action<Command>> commandMap = new Dictionary<string, Action<Command>>()
+    private Dictionary<string, Action<Command>> commandMap = new Dictionary<string, Action<Command>>()
     {
         {"go", Move},
         {"tron", Tron},
@@ -13,22 +13,22 @@ public static class CommandHandler
         {"inventory", Inventory}
     };
 
-    private static void Inventory(Command command)
+    private void Inventory(Command command)
     {
         Player.ShowInventory();
     }
 
-    private static void Drop(Command command)
+    private void Drop(Command command)
     {
         Player.Drop(command);
     }
 
-    private static void Look(Command command)
+    private void Look(Command command)
     {
         IO.Write(Player.GetLocationDescription());
     }
 
-    public static void Handle(Command command)
+    public void Handle(Command command)
     {
         if (commandMap.ContainsKey(command.Verb))
         {
@@ -41,22 +41,22 @@ public static class CommandHandler
         }
     }
 
-    private static void Move(Command command)
+    private void Move(Command command)
     {
         Player.Move(command);
     }
 
-    private static void Take(Command command)
+    private void Take(Command command)
     {
         Player.Take(command);
     }
 
-    private static void Tron(Command command)
+    private void Tron(Command command)
     {
         Debugger.Tron();
     }
 
-    private static void Troff(Command command)
+    private void Troff(Command command)
     {
         Debugger.Troff();
     }

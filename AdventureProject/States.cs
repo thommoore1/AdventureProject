@@ -1,12 +1,5 @@
 namespace AdventureF24;
 
-public enum StateType
-{
-    Exploring,
-    Combat,
-    Conversation
-}
-
 public static class States
 {
     private static Dictionary<StateType, State> states = new Dictionary<StateType, State>();

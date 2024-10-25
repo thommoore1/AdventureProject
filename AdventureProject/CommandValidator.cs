@@ -2,38 +2,25 @@ namespace AdventureF24;
 
 public static class CommandValidator
 {
+    private static Dictionary<StateType, ICommandValidator> validators = new Dictionary<StateType, ICommandValidator>()
+    {
+        { StateType.Exploring, new ExplorationCommandValidator()},
+        { StateType.Conversation, new ConversationCommandValidator()}
+    };
+
     public static Command Validate(Command command)
     {
-        if (Vocabulary.IsVerb(command.Verb))
+        if (validators.ContainsKey(States.GetCurrentState()))
         {
-            if (Vocabulary.IsStandaloneVerb(command.Verb))
-            {
-                if (command.HasNoNoun())
-                {
-                    command.isValid = true;
-                }
-                else
-                {
-                    IO.Write("I don't know how to do that");
-                }
-            }
-            else if (Vocabulary.IsNoun(command.Noun))
-            {
-                command.isValid = true;
-            }
-            else
-            {
-                IO.Write($"I don't know the word {command.Noun}.");
-            }
-            
+            ICommandValidator validator = validators[States.GetCurrentState()];
+            return validator.Validate(command);
         }
-        else
-        {
-            IO.Write($"I do not know the word {command.Verb}.");
-        }
-
-        return command;
+        return new Command();
     }
+    
+    
+    /*
 
 
+    */
 }
