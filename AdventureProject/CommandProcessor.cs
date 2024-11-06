@@ -6,6 +6,7 @@ public static class CommandProcessor
 {
     public static Command GetCommand()
     {
+        Prompt.Show();
         string input = IO.Read();
         
         Debugger.Write("Raw Input: [" + input + "]");

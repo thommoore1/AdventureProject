@@ -2,14 +2,19 @@ namespace AdventureF24;
 
 public static class IO
 {
-    public static void Write(string output)
+    public static void WriteLine(string output)
     {
         Console.WriteLine(output);
     }
 
+    public static void Write(String output)
+    {
+        Console.Write(output);
+    }
+
     public static string Read()
     {
-        Console.Write("> ");
+        Prompt.Show();
         return Console.ReadLine();
     }
 

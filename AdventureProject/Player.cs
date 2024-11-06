@@ -7,7 +7,7 @@ public static class Player
     public static void Initialize()
     {
         currentLocation = Map.StartLocation;
-        IO.Write(currentLocation.GetDescription());
+        IO.WriteLine(currentLocation.GetDescription());
     }
     
     public static void Move(Command command)
@@ -15,34 +15,34 @@ public static class Player
         if (currentLocation.CanMoveInDirection(command.Noun))
         {
             currentLocation = currentLocation.GetLocationInDirection(command.Noun);
-            IO.Write(currentLocation.GetDescription());
+            IO.WriteLine(currentLocation.GetDescription());
         }
         else
         {
-            IO.Write("Can't go that way.");
+            IO.WriteLine("Can't go that way.");
         }
     }
 
     public static void Take(Command command)
     {
-        IO.Write($"Taking {command.Noun}");
+        IO.WriteLine($"Taking {command.Noun}");
 
         Item item = currentLocation.FindItem(command.Noun);
 
         if (item == null)
         {
-            IO.Write($"There is no {command.Noun} found here");
+            IO.WriteLine($"There is no {command.Noun} found here");
         }
         else if (!item.IsTakeable)
         {
-            IO.Write($"The {command.Noun} cannot be taken");
+            IO.WriteLine($"The {command.Noun} cannot be taken");
         }
         else
         {
             item.PickUp();
             Inventory.Add(item);
             currentLocation.RemoveItem(item);
-            IO.Write($"You take the {item.Name}.");
+            IO.WriteLine($"You take the {item.Name}.");
         }
     }
 
@@ -59,7 +59,7 @@ public static class Player
         {
             Inventory.Remove(item);
             currentLocation.AddItem(item);//add drop item method?
-            IO.Write($"You drop the {item.Name}.");
+            IO.WriteLine($"You drop the {item.Name}.");
         }
     }
 
@@ -67,15 +67,15 @@ public static class Player
     {
         if (Inventory.Count == 0)
         {
-            IO.Write("You are empty-handed.");
+            IO.WriteLine("You are empty-handed.");
         }
         else
         {
-            IO.Write("You are carrying ");
+            IO.WriteLine("You are carrying ");
             foreach (Item item in Inventory)
             {
                 var article = SemanticTools.CreateArticle(item.Name);
-                IO.Write(" " + article + " " + item.Name);
+                IO.WriteLine(" " + article + " " + item.Name);
             }
         }
     }

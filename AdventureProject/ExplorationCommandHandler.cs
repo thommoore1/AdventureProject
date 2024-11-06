@@ -2,7 +2,7 @@ namespace AdventureF24;
 
 public class ExplorationCommandHandler
 {
-    private Dictionary<string, Action<Command>> commandMap = new Dictionary<string, Action<Command>>()
+    private static Dictionary<string, Action<Command>> commandMap = new Dictionary<string, Action<Command>>()
     {
         {"go", Move},
         {"tron", Tron},
@@ -10,25 +10,31 @@ public class ExplorationCommandHandler
         {"take", Take},
         {"look", Look},
         {"drop", Drop},
-        {"inventory", Inventory}
+        {"inventory", Inventory},
+        {"talk", EnterConversationState},
     };
 
-    private void Inventory(Command command)
+    private static void EnterConversationState(Command obj)
+    {
+        Debugger.Write("Trying to enter conersation state");States.ChangeState(StateType.Conversation);
+    }
+
+    private static void Inventory(Command command)
     {
         Player.ShowInventory();
     }
 
-    private void Drop(Command command)
+    private static void Drop(Command command)
     {
         Player.Drop(command);
     }
 
-    private void Look(Command command)
+    private static void Look(Command command)
     {
-        IO.Write(Player.GetLocationDescription());
+        IO.WriteLine(Player.GetLocationDescription());
     }
 
-    public void Handle(Command command)
+    public static void Handle(Command command)
     {
         if (commandMap.ContainsKey(command.Verb))
         {
@@ -37,26 +43,26 @@ public class ExplorationCommandHandler
         }
         else
         {
-            //dont know
+            IO.WriteLine("I don't understand that command.");
         }
     }
 
-    private void Move(Command command)
+    private static void Move(Command command)
     {
         Player.Move(command);
     }
 
-    private void Take(Command command)
+    private static void Take(Command command)
     {
         Player.Take(command);
     }
 
-    private void Tron(Command command)
+    private static void Tron(Command command)
     {
         Debugger.Tron();
     }
 
-    private void Troff(Command command)
+    private static void Troff(Command command)
     {
         Debugger.Troff();
     }

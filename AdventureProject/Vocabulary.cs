@@ -6,7 +6,7 @@ public static class Vocabulary
         { "look", "eat", "get", "go", "take", "drop"};
     
     public static List<string> standaloneVerbs = new List<string>()
-        { "look", "inventory", "exit", "tron", "troff"};
+        { "look", "inventory", "exit", "tron", "troff", "talk"};
     
     public static List<string> nouns = new List<string>()
         { "north", "south", "west", "east", "up", "down"};
