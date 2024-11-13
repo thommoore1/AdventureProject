@@ -63,4 +63,12 @@ public class Location
     {
         Items.Remove(item);
     }
+
+    public void RemoveConnection(string direction)
+    {
+        if (Connections.ContainsKey(direction))
+        {
+            Connections.Remove(direction);
+        }
+    }
 }

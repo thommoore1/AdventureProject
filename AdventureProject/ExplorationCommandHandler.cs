@@ -14,6 +14,11 @@ public class ExplorationCommandHandler
         {"talk", EnterConversationState},
     };
 
+    private static void Use(Command command)
+    {
+        Player.Use(command);
+    }
+
     private static void EnterConversationState(Command obj)
     {
         Debugger.Write("Trying to enter conersation state");States.ChangeState(StateType.Conversation);

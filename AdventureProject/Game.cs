@@ -24,5 +24,6 @@ public static class Game
         States.Initialize();
         Map.Initialize();
         Player.Initialize();
+        Conditions.Initialize();
     }
 }

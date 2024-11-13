@@ -3,21 +3,22 @@ namespace AdventureF24;
 public static class Map
 {
     public static Location StartLocation;
+    
+    private static Dictionary<string, Location> locations = new Dictionary<string, Location>();
     public static void Initialize()
     {
-        Location entranceHall = new Location("Entrance Hall", "A grand hall. Doors lead north and east.");
-        Location library = new Location("Library", "Books and more books. A door leads south");
-        
-        Location meadow = new Location("Meadow", "a meadow with flowers and butterflies");
-        Location forrest = new Location("Forrest", "a forrest with sunlight streaking through the leaves");
-        Location deepForrest = new Location("Deep Forrest", "A forrest dense with trees. It's quite dark");
-        Location castle = new Location("Castle", "A castle in a clearing of the forrest");
-        Location town = new Location("Town", "A small bustling town");
-        Location lake = new Location("Lake", "A beautiful blue lake");
-        Location river = new Location("River", "A river rushing past");
-        Location foothills = new Location("Foothills", "A foothills with a mountain looming behind");
-        Location mountain = new Location("Mountain", "A large mountain capped with snow");
-        Location lavaFlats = new Location("Lava Flats", "lava flats with rivers of lava streking the ground");
+        Location entranceHall = addLocation("Entrance Hall", "A grand hall. Doors lead north and east.");
+        Location library = addLocation("Library", "Books and more books. A door leads south");
+        Location meadow = addLocation("Meadow", "a meadow with flowers and butterflies");
+        Location forrest = addLocation("Forrest", "a forrest with sunlight streaking through the leaves");
+        Location deepForrest = addLocation("Deep Forrest", "A forrest dense with trees. It's quite dark");
+        Location castle = addLocation("Castle", "A castle in a clearing of the forrest");
+        Location town = addLocation("Town", "A small bustling town");
+        Location lake = addLocation("Lake", "A beautiful blue lake");
+        Location river = addLocation("River", "A river rushing past");
+        Location foothills = addLocation("Foothills", "A foothills with a mountain looming behind");
+        Location mountain = addLocation("Mountain", "A large mountain capped with snow");
+        Location lavaFlats = addLocation("Lava Flats", "lava flats with rivers of lava streking the ground");
 
         entranceHall.AddConnection("north", library);
         library.AddConnection("south", entranceHall);
@@ -63,5 +64,62 @@ public static class Map
         meadow.AddItem(key);
         meadow.AddItem(beer);
         meadow.AddItem(alligator);
+    }
+
+    private static Location addLocation(string name, string description)
+    {
+        Location location = new Location(name, description);
+        locations.Add(name, location);
+        return location;
+    }
+
+    public static void AddConnection(string startLocation, string direction, string endLocation)
+    {
+        Location? start = FindLocation(startLocation);
+        Location? end = FindLocation(startLocation);
+
+        if (start == null || end == null)
+        {
+            IO.Error($"Could not find location: {startLocation} and/or {endLocation}");
+            return;
+        }
+        start.AddConnection(direction, end);
+    }
+    
+    public static void RemoveConnection(string locationName, string direction)
+    {
+        Location? location = FindLocation(locationName);
+
+        if (location == null)
+        {
+            return;
+        }
+        location.RemoveConnection(direction);
+    }
+    
+
+    public static Location? FindLocation(string location)
+    {
+        if (locations.ContainsKey(location))
+        {
+            return locations[location];
+        }
+        return null;
+    }
+
+    public static bool DoesLocationExist(string locationName)
+    {
+        if (locations.ContainsKey(locationName))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static Location? GetLocationByName(string locationName)
+    {
+        Location location = FindLocation(locationName);
+        return location;
     }
 }
