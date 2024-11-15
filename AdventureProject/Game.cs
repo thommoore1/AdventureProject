@@ -25,5 +25,6 @@ public static class Game
         Map.Initialize();
         Player.Initialize();
         Conditions.Initialize();
+        Items.Initialize();
     }
 }

@@ -21,4 +21,24 @@ public static class ConditionActions
     {
         return () => Player.MoveToLocation(locationName);
     }
+
+    public static Action AddItemToInventory(ItemType itemType)
+    {
+        return () => Player.AddToInventory(itemType);
+    }
+
+    public static Action RemoveItemFromInventory(ItemType itemType)
+    {
+        return () => Player.RemoveFromInventory(itemType);
+    }
+
+    public static Action AddItemToLocation(ItemType itemType, string locationName)
+    {
+        return () => Map.AddItem(itemType, locationName);
+    }
+
+    public static Action RemoveItemFromLocation(ItemType itemType, string locationName)
+    {
+        Map.RemoveItem(itemType, locationName);
+    }
 }

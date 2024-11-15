@@ -22,10 +22,10 @@ public class Item
     }
 
 
-    public Item(string name, string description, string initialLocationDescription, bool isTakeable = true)
+    public Item(ItemType itemType, string description, string initialLocationDescription, bool isTakeable = true)
     {
-        Vocabulary.AddNoun(name);
-        Name = name;
+        Vocabulary.AddNoun(itemType.ToString());
+        Name = itemType.ToString();
         Description = description;
         InitialLocationDescription = initialLocationDescription;
         IsTakeable = isTakeable;

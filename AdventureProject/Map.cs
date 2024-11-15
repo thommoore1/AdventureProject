@@ -122,4 +122,36 @@ public static class Map
         Location location = FindLocation(locationName);
         return location;
     }
+
+    public static void AddItem(Item? item, string roomName)
+    {
+        if (item == null)
+        {
+            return;
+        }
+        
+        Location? location = GetLocationByName(roomName);
+        AddItemToLocation(item, location);
+    }
+
+    public static void AddItem(ItemType itemType, string roomName)
+    {
+        Item? item = Items.FindItem(itemType);
+        AddItem(item, roomName);
+    }
+
+    private static void AddItemToLocation(Item? item, Location location)
+    {
+        
+    }
+
+    public static void RemoveItem(ItemType itemType, string locationName)
+    {
+        Location? location = GetLocationByName(locationName);
+        if (location == null)
+        {
+            return;
+        }
+        location.RemoveItem(itemType);
+    }
 }

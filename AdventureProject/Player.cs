@@ -100,4 +100,24 @@ public static class Player
         currentLocation = newLocation;
         IO.WriteLine(currentLocation.GetDescription());
     }
+
+    public static void AddToInventory(ItemType itemType)
+    {
+        Item item = Items.FindItem(itemType);
+        if (item == null)
+        {
+            return;
+        }
+        Inventory.Add(item);
+    }
+
+    public static void RemoveFromInventory(ItemType itemType)
+    {
+        Item item = Items.FindItem(itemType);
+        if (item == null)
+        {
+            return;
+        }
+        Inventory.Remove(item);
+    }
 }
