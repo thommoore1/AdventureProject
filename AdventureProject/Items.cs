@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace AdventureF24;
 
 public static class Items
@@ -6,7 +8,12 @@ public static class Items
 
     public static void Initialize()
     {
-        Item key = CreateItem(ItemType.key, "An old, ruty key", "there is a key poking out from the dust");
+        string path = Path.Combine(Environment.CurrentDirectory, "Items.json");
+        string rawText = File.ReadAllText(path);
+        
+        ItemsJsonData data = JsonSerializer.Deserialize<ItemsJsonData>(rawText);
+        
+        Item key = CreateItem(ItemType.key, "An old, rusty key", "there is a key poking out from the dust");
         Map.AddItem(key, "Meadow");
         
         Item? beer = CreateItem(ItemType.beer, "Beer's beer", " there is beer here");

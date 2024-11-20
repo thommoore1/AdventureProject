@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "itemType": "lantern",
+      "description": "An old lantern.",
+      "initalLocationText": "A lantern sits on the groun.",
+      "isTakable": true,
+      "location": "A lantern sits on the ground.",
+    },
+    {
+      "itemType": "beer",
+      "description": "Beers beer",
+      "initalLocationText": "Beer wants you",
+      "isTakable": true,
+      "location": "beeya heeya"
+    }
+  ]
+}
