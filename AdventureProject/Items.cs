@@ -13,11 +13,20 @@ public static class Items
         
         ItemsJsonData data = JsonSerializer.Deserialize<ItemsJsonData>(rawText);
         
-        Item key = CreateItem(ItemType.key, "An old, rusty key", "there is a key poking out from the dust");
-        Map.AddItem(key, "Meadow");
-        
-        Item? beer = CreateItem(ItemType.beer, "Beer's beer", " there is beer here");
-        Map.AddItem(beer, "Meadow");
+        foreach (ItemJsonData itemData in data.Items)
+        {
+            if (!Enum.TryParse(itemData.ItemType, true, out ItemType itemType))
+            {
+                IO.Error($"Invalid item type {itemData.ItemType} in Items.json");
+                continue;
+            }
+            Item? item = new Item(itemData.Name, itemData.description, itemData.initalLocationText, itemData.isTakable);
+
+            if (item != null)
+            {
+                Map.AddItem(itemType, itemData.Location);
+            }
+        }
     }
 
     public static Item? CreateItem(ItemType itemType, string description, string initalLocationDescription, bool isTakeable = true)

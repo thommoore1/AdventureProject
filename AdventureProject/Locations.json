@@ -1,0 +1,31 @@
+{
+  "Locations":
+          [
+            {
+              "Name": "Entrance Hall",
+              "Description": "This is the entrance hall. Doors east and north.",
+              "Connections":
+              {
+                "East": "Storage Room",
+                "North": "Library"
+              }
+            },
+            {
+              "Name": "Storage Room",
+              "Description": "This is storgae room. Doors wet",
+              "Connections":
+              {
+                "West": "Entrance Hall"
+              }
+            },
+            {
+              "Name": "Library",
+              "Description": "This is library room. Doors south",
+              "Connections":
+              {
+                "South": "Entrance Hall"
+              }
+            }
+          ],
+  "StartLocation": "Entrance Hall"
+}
