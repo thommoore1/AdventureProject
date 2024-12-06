@@ -60,6 +60,11 @@ public static class Player
             Inventory.Remove(item);
             currentLocation.AddItem(item);//add drop item method?
             IO.WriteLine($"You drop the {item.Name}.");
+
+            if (item.Name == "Key")
+            {
+                Conditions.IsTrue(ConditionType.HasKey);
+            }
         }
     }
 
